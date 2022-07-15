@@ -27,22 +27,4 @@ router.get('/', function (req, res, next) {
         }
     });
 });
-
-router.get('/update', function (req, res, next) {
-    const { id, name,phone,email,role,image } = req.query;
-    if(!id){
-        return res.status(401).send("Id is required");
-    }
-
-    let sqlQuery = 'UPDATE `users` SET `name`=?,`phone`=?,`email`=?, `password`=?,`role`=?,`image`=? WHERE `id`=?';
-    conn.query(sqlQuery, [name,phone,email,password,role,image, id], function(error,result){
-        if(error){
-            console.log(error);
-            return res.status(400).send("An error has occured");
-        }else{
-            return res.status(200).send("Personne updated successfully ")
-        }
-    });
-});
-
 module.exports = router;
